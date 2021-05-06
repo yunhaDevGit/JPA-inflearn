@@ -14,16 +14,41 @@ public class JpaMain {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         EntityTransaction entityTransaction = entityManager.getTransaction();
+
+        // 엔티티 매니저에서 수행하는 모든 로직은 트랜잭션 안에서 수행되어야 한다.
         entityTransaction.begin();
 
-        Member member = new Member();
-        member.setId(2L);
-        member.setName("helloB");
+        try{
+//            // 데이터 삽입
+            Member member = new Member();
+            member.setId(1L);
+            member.setName("helloA");
+            // 엔티티 매니저의 영속성 컨텍스트에 위에서 만든 member 객체가 저장된다
+            // 이제 member 엔티티는 엔티티 매니저의 관리 대상이 되고, 영속성을 가졌다고 말할 수 있다다
+            entityManager.persist(member);
 
-        entityManager.persist(member);
+//            // 데이터 삭제
+//            Member findMember = entityManager.find(Member.class, 2L);
+//            entityManager.remove(findMember);
 
-        entityTransaction.commit();
-        entityManager.close();
+//            // 데이터 검색
+//            Member findMember = entityManager.find(Member.class, 2L);
+//            entityManager.remove(findMember);
+//            entityTransaction.commit();
+
+
+            // 데이터 수정
+//            Member findMember = entityManager.find(Member.class, 2L);
+//            findMember.setName("helloJPA");
+//
+            entityTransaction.commit();
+
+        } catch (Exception e){
+            entityTransaction.rollback();
+        } finally {
+            entityManager.close();
+        }
+
         entityManagerFactory.close();
     }
 }
