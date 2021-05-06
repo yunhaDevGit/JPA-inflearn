@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -20,16 +21,18 @@ public class JpaMain {
 
         try{
 //            // 데이터 삽입
-            Member member = new Member();
-            member.setId(1L);
-            member.setName("helloA");
-            // 엔티티 매니저의 영속성 컨텍스트에 위에서 만든 member 객체가 저장된다
-            // 이제 member 엔티티는 엔티티 매니저의 관리 대상이 되고, 영속성을 가졌다고 말할 수 있다다
-            entityManager.persist(member);
+//            Member member = new Member();
+//            member.setId(1L);
+//            member.setName("helloA");
+//            // 엔티티 매니저의 영속성 컨텍스트에 위에서 만든 member 객체가 저장된다
+//            // 이제 member 엔티티는 엔티티 매니저의 관리 대상이 되고, 영속성을 가졌다고 말할 수 있다다
+//            entityManager.persist(member);
+//            entityTransaction.commit();
 
 //            // 데이터 삭제
 //            Member findMember = entityManager.find(Member.class, 2L);
 //            entityManager.remove(findMember);
+//            entityTransaction.commit();
 
 //            // 데이터 검색
 //            Member findMember = entityManager.find(Member.class, 2L);
@@ -40,7 +43,17 @@ public class JpaMain {
             // 데이터 수정
 //            Member findMember = entityManager.find(Member.class, 2L);
 //            findMember.setName("helloJPA");
-//
+//            entityTransaction.commit();
+
+            // JPQL
+            // table을 대상으로 코드를 짜지 않는다. Member 객체를 대상으로 쿼리를 짠다. 여기서 Member는 객체이다
+            List<Member> result = entityManager.createQuery("select m from Member as m", Member.class)
+                    .getResultList();
+
+            for(Member member : result){
+                System.out.println("member.name = " + member.getName());
+            }
+
             entityTransaction.commit();
 
         } catch (Exception e){
