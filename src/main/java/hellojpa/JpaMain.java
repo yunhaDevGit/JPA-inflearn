@@ -78,13 +78,13 @@ public class JpaMain {
 //            findMember1.setName("updateName");
 //
 //            entityTransaction.commit();
-
-            Member member = new Member(200L, "member200");
-            entityManager.persist(member);
-
-            entityManager.flush();
-            System.out.println("-==============");
-            entityTransaction.commit();
+//
+//            Member member = new Member(200L, "member200");
+//            entityManager.persist(member);
+//
+//            entityManager.flush();
+//            System.out.println("-==============");
+//            entityTransaction.commit();
 
         } catch (Exception e) {
             entityTransaction.rollback();
