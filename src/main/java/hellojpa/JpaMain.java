@@ -84,7 +84,7 @@ public class JpaMain {
 //
 //            entityManager.flush();
 //            System.out.println("-==============");
-//            entityTransaction.commit();
+            entityTransaction.commit();
 
         } catch (Exception e) {
             entityTransaction.rollback();

@@ -6,8 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="jpastore" />
+        <module name="chapter01" />
+        <module name="chapter02" />
+        <module name="chapter03" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ex1-hello-jpa" target="8" />
+      <module name="jpastore" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
